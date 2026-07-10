@@ -1,514 +1,891 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aula 360 — Expedientes Técnicos para Arquitectos e Ingenieros</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="images/lgotipo-10.svg">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      color: #111827;
-      background: #fff;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-
-    /* Nav */
-    nav {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid #e5e7eb;
-    }
-    nav .container {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 72px;
-    }
-    .logo {
-      display: flex; align-items: center;
-    }
-    .logo img { display: block; }
-    .nav-wa {
-      font-size: .875rem; font-weight: 600;
-      padding: 8px 20px; border-radius: 8px;
-      background: #2baa6b; color: #fff; transition: background .2s;
-    }
-    .nav-wa:hover { background: #23905a; }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-weight: 600; font-size: .9375rem;
-      padding: 12px 28px; border-radius: 8px; border: none; cursor: pointer;
-      transition: background .2s, color .2s;
-    }
-    .btn-primary {
-      background: #2b84cb; color: #fff;
-    }
-    .btn-primary:hover { background: #2470aa; }
-    .btn-wa {
-      background: #2baa6b; color: #fff;
-    }
-    .btn-wa:hover { background: #23905a; }
-    .btn-outline {
-      background: transparent; color: #2b84cb;
-      border: 1px solid #2b84cb;
-    }
-    .btn-outline:hover { background: #eef5fa; }
-
-    /* Sections */
-    section { padding: 80px 0; }
-    section + section { padding-top: 0; }
-    .section-title {
-      font-size: 1.875rem; font-weight: 700; letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    .section-sub {
-      color: #6b7280; font-size: 1.0625rem; max-width: 560px;
-    }
-    .section-label {
-      font-size: .8125rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: .06em; color: #2b84cb; margin-bottom: 8px;
-    }
-
-    /* Hero */
-    .hero {
-      padding: 96px 0 80px;
-      display: grid; gap: 48px;
-    }
-    @media (min-width: 768px) {
-      .hero { grid-template-columns: 1fr 1fr; align-items: center; padding: 120px 0 80px; }
-    }
-    .hero h1 {
-      font-size: 2.5rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.03em;
-      margin-bottom: 20px;
-    }
-    @media (min-width: 768px) { .hero h1 { font-size: 3rem; } }
-    .hero p {
-      color: #6b7280; font-size: 1.125rem; margin-bottom: 32px; max-width: 480px;
-    }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-
-    /* Carousel */
-    .carousel {
-      position: relative; border-radius: 12px; overflow: hidden;
-      width: 100%; aspect-ratio: 4 / 3; background: #e5e7eb;
-    }
-    .carousel-slide {
-      position: absolute; inset: 0;
-      opacity: 0; transition: opacity .6s ease; pointer-events: none;
-    }
-    .carousel-slide.active {
-      opacity: 1; pointer-events: auto;
-    }
-    .carousel-slide img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
-    .carousel-btn {
-      position: absolute; top: 50%; translate: 0 -50%;
-      width: 36px; height: 36px; border-radius: 50%;
-      background: rgba(255,255,255,.8); border: none; cursor: pointer;
-      font-size: 1.125rem; color: #374151; z-index: 2;
-      display: flex; align-items: center; justify-content: center;
-      transition: background .2s;
-    }
-    .carousel-btn:hover { background: #fff; }
-    .carousel-btn.prev { left: 12px; }
-    .carousel-btn.next { right: 12px; }
-    .carousel-dots {
-      position: absolute; bottom: 12px; left: 50%; translate: -50% 0;
-      display: flex; gap: 8px; z-index: 2;
-    }
-    .carousel-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(255,255,255,.5); border: none; cursor: pointer;
-      transition: background .2s;
-    }
-    .carousel-dot.active { background: #fff; }
-
-    /* Value Props */
-    .props-grid {
-      display: grid; gap: 32px;
-    }
-    @media (min-width: 640px) { .props-grid { grid-template-columns: repeat(3, 1fr); } }
-    .prop-card {
-      border: 1px solid #e5e7eb; border-radius: 12px; padding: 0;
-      overflow: hidden;
-    }
-    .prop-card > div { padding: 24px; }
-    .prop-img {
-      width: 100%; height: 160px; overflow: hidden; background: #f3f4f6;
-    }
-    .prop-img img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
-    .prop-card h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 8px; }
-    .prop-card p { color: #6b7280; font-size: .9375rem; }
-
-    /* Products */
-    .products-header { margin-bottom: 40px; }
-    .products-grid {
-      display: grid; gap: 24px;
-    }
-    @media (min-width: 640px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
-    .product-card {
-      border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;
-      transition: box-shadow .2s;
-    }
-    .product-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,.06); }
-    .product-img {
-      width: 100%; aspect-ratio: 16 / 10;
-    }
-    .product-img img {
-      width: 100%; height: 100%; object-fit: cover;
-      display: block;
-    }
-    .product-body { padding: 20px 24px 24px; }
-    .product-body h3 { font-size: 1.0625rem; font-weight: 600; margin-bottom: 6px; }
-    .product-body p { color: #6b7280; font-size: .875rem; margin-bottom: 16px; }
-    .product-footer {
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .product-price { font-size: 1.25rem; font-weight: 700; color: #2b84cb; }
-
-    /* Incluye */
-    .includes-grid {
-      display: grid; gap: 16px;
-    }
-    @media (min-width: 640px) { .includes-grid { grid-template-columns: repeat(2, 1fr); } }
-    .include-item {
-      display: flex; align-items: flex-start; gap: 12px;
-      padding: 16px 0;
-      border-bottom: 1px solid #f3f4f6;
-    }
-    .include-item:last-of-type { border-bottom: none; }
-    .include-check {
-      width: 24px; height: 24px; border-radius: 6px;
-      background: #2baa6b; color: #fff;
-      flex-shrink: 0; font-size: .75rem; font-weight: 700;
-    }
-    .include-item h4 { font-size: .9375rem; font-weight: 600; margin-bottom: 2px; }
-    .include-item p { color: #6b7280; font-size: .8125rem; }
-
-    /* CTA */
-    .cta-section {
-      text-align: center;
-      background: #1B3A6B; color: #fff;
-      padding: 80px 0;
-    }
-    .cta-section h2 { font-size: 1.875rem; font-weight: 700; margin-bottom: 12px; }
-    .cta-section p { color: #b0c4de; margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
-    .cta-section .btn-wa { background: #2baa6b; }
-    .cta-section .btn-wa:hover { background: #23905a; }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid #e5e7eb; padding: 48px 0 32px;
-      color: #6b7280; font-size: .875rem;
-    }
-    .footer-grid {
-      display: grid; gap: 32px;
-    }
-    @media (min-width: 640px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
-    footer h4 { color: #111827; font-weight: 600; margin-bottom: 12px; font-size: .9375rem; }
-    footer p { line-height: 1.7; }
-    footer ul { list-style: none; }
-    footer li { margin-bottom: 8px; }
-    footer a:hover { color: #2baa6b; }
-    .footer-bottom { border-top: 1px solid #e5e7eb; margin-top: 32px; padding-top: 24px; text-align: center; font-size: .8125rem; }
-    .footer-bottom a { color: #2b84cb; }
-
-    .section-alt { background: #f8fafc; }
-  </style>
-</head>
-<body>
-
-  <!-- Nav -->
-  <nav>
-    <div class="container">
-      <a href="#" class="logo">
-        <img src="images/lgotipo-10.svg" alt="Aula 360" height="56">
-      </a>
-      <a href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20expedientes" class="nav-wa">Escríbenos por WhatsApp</a>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <section>
-    <div class="container hero">
-      <div>
-        <p class="section-label">Expedientes técnicos desde S/ 18</p>
-        <h1>Expedientes técnicos para arquitectos e ingenieros</h1>
-        <p>Somos Aula 360, una plataforma especializada en herramientas técnicas para arquitectos e ingenieros del Perú. Ponemos a tu disposición expedientes técnicos completos, actualizados y listos para usar. Entrega inmediata por WhatsApp.</p>
-        <div class="hero-actions">
-          <a href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20expedientes" class="btn btn-wa">Comprar por WhatsApp</a>
-          <!-- <a href="#catalogo" class="btn btn-outline">Ver catálogo</a> -->
-        </div>
-      </div>
-      <div class="carousel" id="heroCarousel">
-        <div class="carousel-slide active">
-          <img src="images/hero1.webp" alt="Muestra de expediente técnico — vista 1">
-        </div>
-        <div class="carousel-slide">
-          <img src="images/hero2.webp" alt="Muestra de expediente técnico — vista 2">
-        </div>
-        <button class="carousel-btn prev" id="prevBtn">←</button>
-        <button class="carousel-btn next" id="nextBtn">→</button>
-        <div class="carousel-dots">
-          <button class="carousel-dot active" data-index="0"></button>
-          <button class="carousel-dot" data-index="1"></button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Value Props -->
-  <section class="section-alt">
-    <div class="container">
-      <p class="section-label">Por qué Aula 360</p>
-      <h2 class="section-title">Documentos que puedes usar hoy</h2>
-      <p class="section-sub" style="margin-bottom:40px">Expedientes completos, normados y listos para descargar. Sin esperas ni trámites.</p>
-      <div class="props-grid">
-        <article class="prop-card">
-          <div class="prop-img">
-            <img src="images/elaborados.webp" alt="Documentos completos y listos para usar">
-          </div>
-          <div>
-            <h3>Completos y listos para usar</h3>
-            <p>Cada expediente incluye memoria descriptiva, especificaciones técnicas, planos, metrados, presupuesto, cronograma y fórmula polinómica. Todo lo que necesitas en un solo archivo.</p>
-          </div>
-        </article>
-        <article class="prop-card">
-          <div class="prop-img">
-            <img src="images/descarga.webp" alt="Entrega inmediata del expediente">
-          </div>
-          <div>
-            <h3>Entrega inmediata</h3>
-            <p>Recibe tu expediente al instante después del pago. Yape, Plin o transferencia — tú eliges. Sin formularios ni demoras.</p>
-          </div>
-        </article>
-        <article class="prop-card">
-          <div class="prop-img">
-            <img src="images/cumplimento.webp" alt="Cumplimiento de normativa técnica">
-          </div>
-          <div>
-            <h3>Cumplimiento normativo</h3>
-            <p>Elaborados considerando el RNE, Manual de Carreteras DG-2018, Código Nacional de Electricidad y directivas de Invierte.pe.</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Products -->
-  <section id="catalogo">
-    <div class="container">
-      <div class="products-header">
-        <p class="section-label">Catálogo</p>
-        <h2 class="section-title">Elige tu expediente</h2>
-        <p class="section-sub">Todos a S/ 18. Todos con entrega inmediata por WhatsApp.</p>
-      </div>
-      <div class="products-grid">
-        <article class="product-card">
-          <div class="product-img"><img src="images/salud.webp" alt="Expediente Técnico — Centros de Salud"></div>
-          <div class="product-body">
-            <h3>🏥 Expediente Técnico — Centros de Salud</h3>
-            <p>Expediente completo para postas, centros de salud y hospitales. Cumple normativa del MINSA y RNE.</p>
-            <div class="product-footer">
-              <span class="product-price">S/ 18</span>
-              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Centros%20de%20Salud" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
-            </div>
-          </div>
-        </article>
-        <article class="product-card">
-          <div class="product-img"><img src="images/estadios.webp" alt="Expediente Técnico — Obras Deportivas"></div>
-          <div class="product-body">
-            <h3>🏟️ Expediente Técnico — Obras Deportivas</h3>
-            <p>Expediente para losas deportivas, complejos recreativos y campos multiusos.</p>
-            <div class="product-footer">
-              <span class="product-price">S/ 18</span>
-              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Obras%20Deportivas" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
-            </div>
-          </div>
-        </article>
-        <article class="product-card">
-          <div class="product-img"><img src="images/agua.webp" alt="Expediente Técnico — Agua y Desagüe"></div>
-          <div class="product-body">
-            <h3>💧 Expediente Técnico — Agua y Desagüe</h3>
-            <p>Expediente para redes de agua potable y alcantarillado sanitario. Cumple normativa de SEDAPAL y RNE.</p>
-            <div class="product-footer">
-              <span class="product-price">S/ 18</span>
-              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Agua%20y%20Desag%C3%BCe" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
-            </div>
-          </div>
-        </article>
-        <article class="product-card">
-          <div class="product-img"><img src="images/electricas.webp" alt="Expediente Técnico — Instalaciones Eléctricas"></div>
-          <div class="product-body">
-            <h3>⚡ Expediente Técnico — Instalaciones Eléctricas</h3>
-            <p>Expediente para sistemas eléctricos en edificaciones. Cumple el Código Nacional de Electricidad (CNE).</p>
-            <div class="product-footer">
-              <span class="product-price">S/ 18</span>
-              <a href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Instalaciones%20El%C3%A9ctricas" class="btn btn-wa" style="padding:8px 18px;font-size:.875rem">Comprar</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ¿Qué incluye? -->
-  <section class="section-alt" style="padding-top:80px">
-    <div class="container">
-      <p class="section-label">Contenido</p>
-      <h2 class="section-title">¿Qué incluye cada expediente?</h2>
-      <p class="section-sub" style="margin-bottom:32px">Todos nuestros expedientes técnicos incluyen estos 6 documentos esenciales:</p>
-      <div class="includes-grid">
-        <div class="include-item">
-          <div class="include-check">✓</div>
-          <div>
-            <h4>Memoria descriptiva</h4>
-            <p>Descripción detallada del proyecto, alcances y justificación técnica.</p>
-          </div>
-        </div>
-        <div class="include-item">
-          <div class="include-check">✓</div>
-          <div>
-            <h4>Especificaciones técnicas</h4>
-            <p>Especificaciones de materiales, procesos y estándares de calidad.</p>
-          </div>
-        </div>
-        <div class="include-item">
-          <div class="include-check">✓</div>
-          <div>
-            <h4>Planos de arquitectura y estructuras</h4>
-            <p>Planos completos en formato editable para adaptar a tu proyecto.</p>
-          </div>
-        </div>
-        <div class="include-item">
-          <div class="include-check">✓</div>
-          <div>
-            <h4>Metrados y presupuesto</h4>
-            <p>Metrados detallados con presupuesto referencial para tu licitación.</p>
-          </div>
-        </div>
-        <div class="include-item">
-          <div class="include-check">✓</div>
-          <div>
-            <h4>Cronograma de ejecución</h4>
-            <p>Cronograma valorizado con plazos estimados por partida.</p>
-          </div>
-        </div>
-        <div class="include-item">
-          <div class="include-check">✓</div>
-          <div>
-            <h4>Fórmula polinómica</h4>
-            <p>Fórmula de reajuste de precios acorde a la normativa del OSCE.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>¿Listo para empezar tu proyecto?</h2>
-      <p>Consigue tu expediente técnico al instante. Escríbenos por WhatsApp y lo recibes en menos de 5 minutos.</p>
-      <a href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20expedientes" class="btn btn-wa">Escríbenos por WhatsApp</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-grid container">
-      <div>
-        <div class="logo" style="margin-bottom:12px">
-          <img src="images/lgotipo-10.svg" alt="Aula 360" height="44">
-        </div>
-        <p>Plataforma especializada en expedientes técnicos para arquitectos e ingenieros del Perú. Democratizamos el acceso a herramientas técnicas de calidad.</p>
-      </div>
-      <div>
-        <h4>Expedientes</h4>
-        <ul>
-          <li><a href="#">Centros de Salud</a></li>
-          <li><a href="#">Obras Deportivas</a></li>
-          <li><a href="#">Agua y Desagüe</a></li>
-          <li><a href="#">Instalaciones Eléctricas</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="privacidad.html">Privacidad</a></li>
-          <li><a href="terminos.html">Términos</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contacto</h4>
-        <ul>
-          <li><a href="mailto:aula360pe@gmail.com">aula360pe@gmail.com</a></li>
-          <li><a href="https://wa.me/51982599421">WhatsApp</a></li>
-          <li><a href="#">Lima, Perú</a></li>
-          <li><span style="color:#9ca3af">Lun — Sáb, 9:00 AM – 7:00 PM</span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="container">&copy; 2025 Aula 360. Todos los derechos reservados.</div>
-    </div>
-  </footer>
-
-  <script>
-    (function() {
-      const slides = document.querySelectorAll('.carousel-slide');
-      const dots = document.querySelectorAll('.carousel-dot');
-      const prev = document.getElementById('prevBtn');
-      const next = document.getElementById('nextBtn');
-      let current = 0;
-      let interval;
-
-      function goTo(index) {
-        slides[current].classList.remove('active');
-        dots[current].classList.remove('active');
-        current = (index + slides.length) % slides.length;
-        slides[current].classList.add('active');
-        dots[current].classList.add('active');
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aula 360 — Expedientes Técnicos para Arquitectos e Ingenieros</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        color: #111827;
+        background: #fff;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .container {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 0 24px;
       }
 
-      function nextSlide() { goTo(current + 1); }
-      function prevSlide() { goTo(current - 1); }
-
-      function startInterval() {
-        interval = setInterval(nextSlide, 4000);
+      /* Nav */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid #e5e7eb;
       }
-      function resetInterval() {
-        clearInterval(interval);
-        startInterval();
+      nav .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+      .logo img {
+        display: block;
+        border-radius: 12px;
+      }
+      .nav-wa {
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 8px 20px;
+        border-radius: 8px;
+        background: #2baa6b;
+        color: #fff;
+        transition: background 0.2s;
+      }
+      .nav-wa:hover {
+        background: #23905a;
       }
 
-      next.addEventListener('click', function() { nextSlide(); resetInterval(); });
-      prev.addEventListener('click', function() { prevSlide(); resetInterval(); });
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 600;
+        font-size: 0.9375rem;
+        padding: 12px 28px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .btn-primary {
+        background: #2b84cb;
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: #2470aa;
+      }
+      .btn-wa {
+        background: #2baa6b;
+        color: #fff;
+      }
+      .btn-wa:hover {
+        background: #23905a;
+      }
+      .btn-outline {
+        background: transparent;
+        color: #2b84cb;
+        border: 1px solid #2b84cb;
+      }
+      .btn-outline:hover {
+        background: #eef5fa;
+      }
 
-      dots.forEach(function(dot) {
-        dot.addEventListener('click', function() {
-          goTo(parseInt(this.dataset.index));
+      /* Sections */
+      section {
+        padding: 80px 0;
+      }
+      section + section {
+        padding-top: 0;
+      }
+      .section-title {
+        font-size: 1.875rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
+      }
+      .section-sub {
+        color: #6b7280;
+        font-size: 1.0625rem;
+        max-width: 560px;
+      }
+      .section-label {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #2b84cb;
+        margin-bottom: 8px;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 96px 0 80px;
+        display: grid;
+        gap: 48px;
+      }
+      @media (min-width: 768px) {
+        .hero {
+          grid-template-columns: 1fr 1fr;
+          align-items: center;
+          padding: 120px 0 80px;
+        }
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        margin-bottom: 20px;
+      }
+      @media (min-width: 768px) {
+        .hero h1 {
+          font-size: 3rem;
+        }
+      }
+      .hero p {
+        color: #6b7280;
+        font-size: 1.125rem;
+        margin-bottom: 32px;
+        max-width: 480px;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      /* Carousel */
+      .carousel {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        background: #e5e7eb;
+      }
+      .carousel-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+        pointer-events: none;
+      }
+      .carousel-slide.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        translate: 0 -50%;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.8);
+        border: none;
+        cursor: pointer;
+        font-size: 1.125rem;
+        color: #374151;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      }
+      .carousel-btn:hover {
+        background: #fff;
+      }
+      .carousel-btn.prev {
+        left: 12px;
+      }
+      .carousel-btn.next {
+        right: 12px;
+      }
+      .carousel-dots {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        translate: -50% 0;
+        display: flex;
+        gap: 8px;
+        z-index: 2;
+      }
+      .carousel-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .carousel-dot.active {
+        background: #fff;
+      }
+
+      /* Value Props */
+      .props-grid {
+        display: grid;
+        gap: 32px;
+      }
+      @media (min-width: 640px) {
+        .props-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .prop-card {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 0;
+        overflow: hidden;
+      }
+      .prop-card > div {
+        padding: 24px;
+      }
+      .prop-img {
+        width: 100%;
+        height: 160px;
+        overflow: hidden;
+        background: #f3f4f6;
+      }
+      .prop-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .prop-card h3 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .prop-card p {
+        color: #6b7280;
+        font-size: 0.9375rem;
+      }
+
+      /* Products */
+      .products-header {
+        margin-bottom: 40px;
+      }
+      .products-grid {
+        display: grid;
+        gap: 24px;
+      }
+      @media (min-width: 640px) {
+        .products-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .product-card {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: box-shadow 0.2s;
+      }
+      .product-card:hover {
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      }
+      .product-img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+      }
+      .product-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .product-body {
+        padding: 20px 24px 24px;
+      }
+      .product-body h3 {
+        font-size: 1.0625rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .product-body p {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-bottom: 16px;
+      }
+      .product-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .product-price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2b84cb;
+      }
+
+      /* Incluye */
+      .includes-grid {
+        display: grid;
+        gap: 16px;
+      }
+      @media (min-width: 640px) {
+        .includes-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .include-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px 0;
+        border-bottom: 1px solid #f3f4f6;
+      }
+      .include-item:last-of-type {
+        border-bottom: none;
+      }
+      .include-check {
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        background: #2baa6b;
+        color: #fff;
+        flex-shrink: 0;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+      .include-item h4 {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+      .include-item p {
+        color: #6b7280;
+        font-size: 0.8125rem;
+      }
+
+      /* CTA */
+      .cta-section {
+        text-align: center;
+        background: #1b3a6b;
+        color: #fff;
+        padding: 80px 0;
+      }
+      .cta-section h2 {
+        font-size: 1.875rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+      .cta-section p {
+        color: #b0c4de;
+        margin-bottom: 28px;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .cta-section .btn-wa {
+        background: #2baa6b;
+      }
+      .cta-section .btn-wa:hover {
+        background: #23905a;
+      }
+
+      /* Footer */
+      footer {
+        border-top: 1px solid #e5e7eb;
+        padding: 48px 0 32px;
+        color: #6b7280;
+        font-size: 0.875rem;
+      }
+      .footer-grid {
+        display: grid;
+        gap: 32px;
+      }
+      @media (min-width: 640px) {
+        .footer-grid {
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+        }
+      }
+      footer h4 {
+        color: #111827;
+        font-weight: 600;
+        margin-bottom: 12px;
+        font-size: 0.9375rem;
+      }
+      footer p {
+        line-height: 1.7;
+      }
+      footer ul {
+        list-style: none;
+      }
+      footer li {
+        margin-bottom: 8px;
+      }
+      footer a:hover {
+        color: #2baa6b;
+      }
+      .footer-bottom {
+        border-top: 1px solid #e5e7eb;
+        margin-top: 32px;
+        padding-top: 24px;
+        text-align: center;
+        font-size: 0.8125rem;
+      }
+      .footer-bottom a {
+        color: #2b84cb;
+      }
+
+      .section-alt {
+        background: #f8fafc;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Nav -->
+    <nav>
+      <div class="container">
+        <a href="#" class="logo">
+          <img src="images/logo.webp" alt="Aula 360" height="56" />
+        </a>
+        <a
+          href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20expedientes"
+          class="nav-wa"
+          >Escríbenos por WhatsApp</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section>
+      <div class="container hero">
+        <div>
+          <p class="section-label">Expedientes técnicos desde S/ 18</p>
+          <h1>Expedientes técnicos para arquitectos e ingenieros</h1>
+          <p>
+            Somos Aula 360, una plataforma especializada en herramientas
+            técnicas para arquitectos e ingenieros del Perú. Ponemos a tu
+            disposición expedientes técnicos completos, actualizados y listos
+            para usar. Entrega inmediata por WhatsApp.
+          </p>
+          <div class="hero-actions">
+            <a
+              href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20expedientes"
+              class="btn btn-wa"
+              >Comprar por WhatsApp</a
+            >
+            <!-- <a href="#catalogo" class="btn btn-outline">Ver catálogo</a> -->
+          </div>
+        </div>
+        <div class="carousel" id="heroCarousel">
+          <div class="carousel-slide active">
+            <img
+              src="images/hero1.webp"
+              alt="Muestra de expediente técnico — vista 1"
+            />
+          </div>
+          <div class="carousel-slide">
+            <img
+              src="images/hero2.webp"
+              alt="Muestra de expediente técnico — vista 2"
+            />
+          </div>
+          <button class="carousel-btn prev" id="prevBtn">←</button>
+          <button class="carousel-btn next" id="nextBtn">→</button>
+          <div class="carousel-dots">
+            <button class="carousel-dot active" data-index="0"></button>
+            <button class="carousel-dot" data-index="1"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Value Props -->
+    <section class="section-alt">
+      <div class="container">
+        <p class="section-label">Por qué Aula 360</p>
+        <h2 class="section-title">Documentos que puedes usar hoy</h2>
+        <p class="section-sub" style="margin-bottom: 40px">
+          Expedientes completos, normados y listos para descargar. Sin esperas
+          ni trámites.
+        </p>
+        <div class="props-grid">
+          <article class="prop-card">
+            <div class="prop-img">
+              <img
+                src="images/elaborados.webp"
+                alt="Documentos completos y listos para usar"
+              />
+            </div>
+            <div>
+              <h3>Completos y listos para usar</h3>
+              <p>
+                Cada expediente incluye memoria descriptiva, especificaciones
+                técnicas, planos, metrados, presupuesto, cronograma y fórmula
+                polinómica. Todo lo que necesitas en un solo archivo.
+              </p>
+            </div>
+          </article>
+          <article class="prop-card">
+            <div class="prop-img">
+              <img
+                src="images/descarga.webp"
+                alt="Entrega inmediata del expediente"
+              />
+            </div>
+            <div>
+              <h3>Entrega inmediata</h3>
+              <p>
+                Recibe tu expediente al instante después del pago. Yape, Plin o
+                transferencia — tú eliges. Sin formularios ni demoras.
+              </p>
+            </div>
+          </article>
+          <article class="prop-card">
+            <div class="prop-img">
+              <img
+                src="images/cumplimento.webp"
+                alt="Cumplimiento de normativa técnica"
+              />
+            </div>
+            <div>
+              <h3>Cumplimiento normativo</h3>
+              <p>
+                Elaborados considerando el RNE, Manual de Carreteras DG-2018,
+                Código Nacional de Electricidad y directivas de Invierte.pe.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="catalogo">
+      <div class="container">
+        <div class="products-header">
+          <p class="section-label">Catálogo</p>
+          <h2 class="section-title">Elige tu expediente</h2>
+          <p class="section-sub">
+            Todos a S/ 18. Todos con entrega inmediata por WhatsApp.
+          </p>
+        </div>
+        <div class="products-grid">
+          <article class="product-card">
+            <div class="product-img">
+              <img
+                src="images/salud.webp"
+                alt="Expediente Técnico — Centros de Salud"
+              />
+            </div>
+            <div class="product-body">
+              <h3>🏥 Expediente Técnico — Centros de Salud</h3>
+              <p>
+                Expediente completo para postas, centros de salud y hospitales.
+                Cumple normativa del MINSA y RNE.
+              </p>
+              <div class="product-footer">
+                <span class="product-price">S/ 18</span>
+                <a
+                  href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Centros%20de%20Salud"
+                  class="btn btn-wa"
+                  style="padding: 8px 18px; font-size: 0.875rem"
+                  >Comprar</a
+                >
+              </div>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-img">
+              <img
+                src="images/estadios.webp"
+                alt="Expediente Técnico — Obras Deportivas"
+              />
+            </div>
+            <div class="product-body">
+              <h3>🏟️ Expediente Técnico — Obras Deportivas</h3>
+              <p>
+                Expediente para losas deportivas, complejos recreativos y campos
+                multiusos.
+              </p>
+              <div class="product-footer">
+                <span class="product-price">S/ 18</span>
+                <a
+                  href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Obras%20Deportivas"
+                  class="btn btn-wa"
+                  style="padding: 8px 18px; font-size: 0.875rem"
+                  >Comprar</a
+                >
+              </div>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-img">
+              <img
+                src="images/agua.webp"
+                alt="Expediente Técnico — Agua y Desagüe"
+              />
+            </div>
+            <div class="product-body">
+              <h3>💧 Expediente Técnico — Agua y Desagüe</h3>
+              <p>
+                Expediente para redes de agua potable y alcantarillado
+                sanitario. Cumple normativa de SEDAPAL y RNE.
+              </p>
+              <div class="product-footer">
+                <span class="product-price">S/ 18</span>
+                <a
+                  href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Agua%20y%20Desag%C3%BCe"
+                  class="btn btn-wa"
+                  style="padding: 8px 18px; font-size: 0.875rem"
+                  >Comprar</a
+                >
+              </div>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-img">
+              <img
+                src="images/electricas.webp"
+                alt="Expediente Técnico — Instalaciones Eléctricas"
+              />
+            </div>
+            <div class="product-body">
+              <h3>⚡ Expediente Técnico — Instalaciones Eléctricas</h3>
+              <p>
+                Expediente para sistemas eléctricos en edificaciones. Cumple el
+                Código Nacional de Electricidad (CNE).
+              </p>
+              <div class="product-footer">
+                <span class="product-price">S/ 18</span>
+                <a
+                  href="https://wa.me/51982599421?text=Quiero%20el%20expediente%20de%20Instalaciones%20El%C3%A9ctricas"
+                  class="btn btn-wa"
+                  style="padding: 8px 18px; font-size: 0.875rem"
+                  >Comprar</a
+                >
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ¿Qué incluye? -->
+    <section class="section-alt" style="padding-top: 80px">
+      <div class="container">
+        <p class="section-label">Contenido</p>
+        <h2 class="section-title">¿Qué incluye cada expediente?</h2>
+        <p class="section-sub" style="margin-bottom: 32px">
+          Todos nuestros expedientes técnicos incluyen estos 6 documentos
+          esenciales:
+        </p>
+        <div class="includes-grid">
+          <div class="include-item">
+            <div class="include-check">✓</div>
+            <div>
+              <h4>Memoria descriptiva</h4>
+              <p>
+                Descripción detallada del proyecto, alcances y justificación
+                técnica.
+              </p>
+            </div>
+          </div>
+          <div class="include-item">
+            <div class="include-check">✓</div>
+            <div>
+              <h4>Especificaciones técnicas</h4>
+              <p>
+                Especificaciones de materiales, procesos y estándares de
+                calidad.
+              </p>
+            </div>
+          </div>
+          <div class="include-item">
+            <div class="include-check">✓</div>
+            <div>
+              <h4>Planos de arquitectura y estructuras</h4>
+              <p>
+                Planos completos en formato editable para adaptar a tu proyecto.
+              </p>
+            </div>
+          </div>
+          <div class="include-item">
+            <div class="include-check">✓</div>
+            <div>
+              <h4>Metrados y presupuesto</h4>
+              <p>
+                Metrados detallados con presupuesto referencial para tu
+                licitación.
+              </p>
+            </div>
+          </div>
+          <div class="include-item">
+            <div class="include-check">✓</div>
+            <div>
+              <h4>Cronograma de ejecución</h4>
+              <p>Cronograma valorizado con plazos estimados por partida.</p>
+            </div>
+          </div>
+          <div class="include-item">
+            <div class="include-check">✓</div>
+            <div>
+              <h4>Fórmula polinómica</h4>
+              <p>
+                Fórmula de reajuste de precios acorde a la normativa del OSCE.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>¿Listo para empezar tu proyecto?</h2>
+        <p>
+          Consigue tu expediente técnico al instante. Escríbenos por WhatsApp y
+          lo recibes en menos de 5 minutos.
+        </p>
+        <a
+          href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20expedientes"
+          class="btn btn-wa"
+          >Escríbenos por WhatsApp</a
+        >
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-grid container">
+        <div>
+          <div class="logo" style="margin-bottom: 12px">
+            <img src="images/logo.webp" alt="Aula 360" height="44" />
+          </div>
+          <p>
+            Plataforma especializada en expedientes técnicos para arquitectos e
+            ingenieros del Perú. Democratizamos el acceso a herramientas
+            técnicas de calidad.
+          </p>
+        </div>
+        <div>
+          <h4>Expedientes</h4>
+          <ul>
+            <li><a href="#">Centros de Salud</a></li>
+            <li><a href="#">Obras Deportivas</a></li>
+            <li><a href="#">Agua y Desagüe</a></li>
+            <li><a href="#">Instalaciones Eléctricas</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacidad.html">Privacidad</a></li>
+            <li><a href="terminos.html">Términos</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <ul>
+            <li>
+              <a href="mailto:aula360pe@gmail.com">aula360pe@gmail.com</a>
+            </li>
+            <li><a href="https://wa.me/51982599421">WhatsApp</a></li>
+            <li><a href="#">Lima, Perú</a></li>
+            <li>
+              <span style="color: #9ca3af">Lun — Sáb, 9:00 AM – 7:00 PM</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="container">
+          &copy; 2025 Aula 360. Todos los derechos reservados.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        const slides = document.querySelectorAll(".carousel-slide");
+        const dots = document.querySelectorAll(".carousel-dot");
+        const prev = document.getElementById("prevBtn");
+        const next = document.getElementById("nextBtn");
+        let current = 0;
+        let interval;
+
+        function goTo(index) {
+          slides[current].classList.remove("active");
+          dots[current].classList.remove("active");
+          current = (index + slides.length) % slides.length;
+          slides[current].classList.add("active");
+          dots[current].classList.add("active");
+        }
+
+        function nextSlide() {
+          goTo(current + 1);
+        }
+        function prevSlide() {
+          goTo(current - 1);
+        }
+
+        function startInterval() {
+          interval = setInterval(nextSlide, 4000);
+        }
+        function resetInterval() {
+          clearInterval(interval);
+          startInterval();
+        }
+
+        next.addEventListener("click", function () {
+          nextSlide();
           resetInterval();
         });
-      });
+        prev.addEventListener("click", function () {
+          prevSlide();
+          resetInterval();
+        });
 
-      startInterval();
-    })();
-  </script>
+        dots.forEach(function (dot) {
+          dot.addEventListener("click", function () {
+            goTo(parseInt(this.dataset.index));
+            resetInterval();
+          });
+        });
 
-</body>
+        startInterval();
+      })();
+    </script>
+  </body>
 </html>
