@@ -1,0 +1,101 @@
+---
+import type { IncludeItem } from "../../types";
+
+interface Props {
+  items: IncludeItem[];
+  variant?: "list" | "cards";
+  label?: string;
+  title: string;
+  sub?: string;
+}
+
+const { items, variant = "list", label, title, sub } = Astro.props;
+---
+
+<section class:list={["includes-section", variant === "list" && "section-alt"]}>
+  <div class="container">
+    {label && <p class="section-label">{label}</p>}
+    <h2 class="section-title">{title}</h2>
+    {sub && <p class="section-sub" style="margin-bottom: 32px">{sub}</p>}
+    <div class="includes-grid">
+      {
+        items.map((item) => (
+          <div class:list={["include-item", variant === "cards" && "include-card"]}>
+            <div class="include-check">✓</div>
+            <div>
+              <h4>{item.title}</h4>
+              <p>{item.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    padding: 80px 0;
+  }
+  /* Cards variant (masterclass) */
+  .includes-section:not(.section-alt) {
+    padding: 64px 0;
+    background: var(--color-bg-alt);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .includes-section:not(.section-alt) .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 32px;
+  }
+  .includes-grid {
+    display: grid;
+    gap: 16px;
+  }
+  @media (min-width: 640px) {
+    .includes-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .include-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--color-bg-subtle);
+  }
+  .include-item:last-of-type {
+    border-bottom: none;
+  }
+  .include-card {
+    padding: 16px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+  .include-card:last-of-type {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .include-check {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-sm);
+    background: var(--color-whatsapp);
+    color: #fff;
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .include-item h4 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .include-item p {
+    color: var(--color-text-muted);
+    font-size: 0.8125rem;
+  }
+</style>

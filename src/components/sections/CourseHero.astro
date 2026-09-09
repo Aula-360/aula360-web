@@ -1,0 +1,143 @@
+---
+import { masterclassMeta, waLink, waMessages } from "../../data/site";
+---
+
+<header class="course-hero">
+  <div class="container">
+    <div class="course-hero-text">
+      <nav class="breadcrumbs">
+        <a href="/">Inicio</a> /
+        <span>Clase Magistral</span>
+      </nav>
+      <span class="course-label">Clase Magistral de entrada</span>
+      <h1>
+        Clase Magistral en Diagnóstico, Reparación y Rehabilitación Estructural
+        en Infraestructura Hospitalaria
+      </h1>
+      <p class="course-hero-lead">
+        Actualiza tus herramientas como ingeniero estructural para diagnosticar,
+        reforzar y adecuar hospitales y clínicas en pleno funcionamiento. Una
+        sesión en vivo con Álvaro Hurtado para tomar decisiones con mayor
+        precisión y seguridad.
+      </p>
+      <dl class="course-meta">
+        {
+          masterclassMeta.map((item) => (
+            <div class="meta-item">
+              <dt>{item.label}</dt>
+              <dd>{item.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <div style="margin-top: 8px">
+        <a href={waLink(waMessages.masterclassInscripcion)} class="btn btn-wa"
+          >Inscribirme ahora</a
+        >
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .course-hero {
+    position: relative;
+    min-height: calc(100vh - var(--nav-height));
+    height: calc(100vh - var(--nav-height));
+    display: flex;
+    align-items: center;
+    background-image: url("/images/Move_column_right_remove_noise_202609071200.webp");
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .course-hero > .container {
+    position: relative;
+    z-index: 1;
+  }
+  .course-hero-text {
+    max-width: 66.67%;
+    background: rgba(10, 37, 64, 0.35);
+    border-radius: var(--radius-xl);
+    padding: 28px 32px;
+  }
+  .breadcrumbs {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 20px;
+  }
+  .breadcrumbs a:hover {
+    color: #fff;
+  }
+  .breadcrumbs span {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+  }
+  .course-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 2.75rem;
+    }
+  }
+  .course-hero-lead {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.125rem;
+    margin-bottom: 28px;
+  }
+  .course-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  @media (min-width: 640px) {
+    .course-meta {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (min-width: 768px) {
+    .course-meta {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+  .meta-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+    backdrop-filter: blur(4px);
+  }
+  .meta-item dt {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 4px;
+  }
+  .meta-item dd {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #fff;
+  }
+</style>

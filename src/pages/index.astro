@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/sections/Hero.astro";
+import ValueProps from "../components/sections/ValueProps.astro";
+import Products from "../components/sections/Products.astro";
+import Includes from "../components/sections/Includes.astro";
+import Cta from "../components/sections/Cta.astro";
+import { expedienteIncludes, waMessages } from "../data/site";
+---
+
+<Layout
+  title="Aula 360 — Expedientes Técnicos para Arquitectos e Ingenieros"
+>
+  <meta
+    slot="head"
+    name="facebook-domain-verification"
+    content="1h4glf3dd8fa18potoeegui50ivyq9"
+  />
+  <Header />
+  <main>
+    <Hero />
+    <ValueProps />
+    <Products />
+    <Includes
+      items={expedienteIncludes}
+      variant="list"
+      label="Contenido"
+      title="¿Qué incluye cada expediente?"
+      sub="Todos nuestros expedientes técnicos incluyen estos 6 documentos esenciales:"
+    />
+    <Cta
+      title="¿Listo para empezar tu proyecto?"
+      description="Consigue tu expediente técnico al instante. Escríbenos por WhatsApp y lo recibes en menos de 5 minutos."
+      buttonText="Escríbenos por WhatsApp"
+      waMessage={waMessages.expedientes}
+    />
+  </main>
+  <Footer />
+</Layout>

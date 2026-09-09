@@ -1,0 +1,104 @@
+---
+import { siteConfig, waLink, waMessages } from "../data/site";
+---
+
+<footer>
+  <div class="footer-grid container">
+    <div>
+      <div class="logo" style="margin-bottom: 12px">
+        <img src="/images/logo.webp" alt="Aula 360" height="44" />
+      </div>
+      <p>{siteConfig.description}</p>
+    </div>
+    <div>
+      <h4>Productos</h4>
+      <ul>
+        <li><a href="/#catalogo">Expedientes</a></li>
+        <li><a href="/masterclass.html">Clases magistrales</a></li>
+        <li><a href="#">Asesorías</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/privacidad.html">Privacidad</a></li>
+        <li><a href="/terminos.html">Términos</a></li>
+        <li><a href="/retirar-contenido.html">Retirar Contenido</a></li>
+        <li>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSc6-UUeUOH3_AMlY1svMd2LR1To4y-ToUEbB1d33BlJ3AC2iQ/viewform?usp=sharing&ouid=113939090749411451993"
+            target="_blank">Libro de Reclamaciones</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <ul>
+        <li>
+          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        </li>
+        <li>
+          <a href={waLink(waMessages.expedientes)}>WhatsApp</a>
+        </li>
+        <li><a href="#">{siteConfig.location}</a></li>
+        <li>
+          <span style="color: var(--color-text-faint)"
+            >{siteConfig.schedule}</span
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      &copy; 2025 Aula 360. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--color-border);
+    padding: 48px 0 32px;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+  .footer-grid {
+    display: grid;
+    gap: 32px;
+  }
+  @media (min-width: 640px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+  }
+  footer h4 {
+    color: var(--color-text);
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 0.9375rem;
+  }
+  footer p {
+    line-height: 1.7;
+  }
+  footer ul {
+    list-style: none;
+  }
+  footer li {
+    margin-bottom: 8px;
+  }
+  footer a:hover {
+    color: var(--color-whatsapp);
+  }
+  .footer-bottom {
+    border-top: 1px solid var(--color-border);
+    margin-top: 32px;
+    padding-top: 24px;
+    text-align: center;
+    font-size: 0.8125rem;
+  }
+  .footer-bottom a {
+    color: var(--color-primary);
+  }
+</style>

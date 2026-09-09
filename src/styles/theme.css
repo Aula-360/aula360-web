@@ -1,0 +1,37 @@
+/* Design tokens — Aula 360 */
+:root {
+  /* Colors — text */
+  --color-text: #111827;
+  --color-text-secondary: #4b5563;
+  --color-text-muted: #6b7280;
+  --color-text-faint: #9ca3af;
+
+  /* Colors — brand */
+  --color-primary: #2b84cb;
+  --color-primary-hover: #2470aa;
+  --color-primary-bg: #eef5fa;
+  --color-whatsapp: #2baa6b;
+  --color-whatsapp-hover: #23905a;
+  --color-navy: #0a2540;
+  --color-navy-light: #b0c4de;
+
+  /* Colors — surfaces */
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8fafc;
+  --color-bg-subtle: #f3f4f6;
+  --color-border: #e5e7eb;
+
+  /* Typography */
+  --font-family:
+    "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --container-width: 1120px;
+  --nav-height: 72px;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+}

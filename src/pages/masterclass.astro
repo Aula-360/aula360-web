@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CourseHero from "../components/sections/CourseHero.astro";
+import CourseContent from "../components/sections/CourseContent.astro";
+import CourseSidebar from "../components/sections/CourseSidebar.astro";
+import Includes from "../components/sections/Includes.astro";
+import Cta from "../components/sections/Cta.astro";
+import { masterclassIncludes, waMessages } from "../data/site";
+---
+
+<Layout
+  title="Clase Magistral — Diagnóstico y Rehabilitación Estructural Hospitalaria | Aula 360"
+  description="Clase Magistral con Álvaro Hurtado. Aprende a diagnosticar, reforzar y adecuar hospitales y clínicas en operación. Inscripción S/ 49."
+>
+  <Header waMessage={waMessages.masterclass} />
+  <CourseHero />
+  <div class="container course-layout">
+    <CourseContent />
+    <CourseSidebar />
+  </div>
+  <Includes
+    items={masterclassIncludes}
+    variant="cards"
+    title="¿Qué incluye tu inscripción?"
+  />
+  <Cta
+    title="¿Listo para especializarte en rehabilitación hospitalaria?"
+    description="Separa tu cupo en la clase magistral de entrada por S/ 49. La sesión es en vivo, con casos reales y acceso preferencial a la especialización completa acreditada."
+    buttonText="Inscribirme por WhatsApp"
+    waMessage={waMessages.masterclassInscripcion}
+  />
+  <Footer />
+</Layout>
+
+<style>
+  .course-layout {
+    display: grid;
+    gap: 40px;
+    padding: 56px 0 80px;
+  }
+  @media (min-width: 992px) {
+    .course-layout {
+      grid-template-columns: 1fr 340px;
+      align-items: start;
+    }
+  }
+</style>

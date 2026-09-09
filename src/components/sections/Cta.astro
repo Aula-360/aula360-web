@@ -1,0 +1,41 @@
+---
+import { waLink } from "../../data/site";
+
+interface Props {
+  title: string;
+  description: string;
+  buttonText: string;
+  waMessage: string;
+}
+
+const { title, description, buttonText, waMessage } = Astro.props;
+---
+
+<section class="cta-section">
+  <div class="container">
+    <h2>{title}</h2>
+    <p>{description}</p>
+    <a href={waLink(waMessage)} class="btn btn-wa">{buttonText}</a>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    text-align: center;
+    background: var(--color-text);
+    color: #fff;
+    padding: 80px 0;
+  }
+  .cta-section h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .cta-section p {
+    color: var(--color-navy-light);
+    margin-bottom: 28px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

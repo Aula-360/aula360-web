@@ -1,0 +1,211 @@
+---
+import { waLink, waMessages } from "../../data/site";
+---
+
+<section>
+  <div class="container hero">
+    <div>
+      <p class="section-label">Expedientes técnicos desde S/ 18</p>
+      <h1>Expedientes técnicos para arquitectos e ingenieros</h1>
+      <p class="hero-lead">
+        Somos Aula 360, una plataforma especializada en herramientas técnicas
+        para arquitectos e ingenieros del Perú. Ponemos a tu disposición
+        expedientes técnicos completos, actualizados y listos para usar.
+        Entrega inmediata por WhatsApp.
+      </p>
+      <div class="hero-actions">
+        <a href={waLink(waMessages.expedientes)} class="btn btn-wa"
+          >Comprar por WhatsApp</a
+        >
+      </div>
+    </div>
+    <div class="carousel" id="heroCarousel">
+      <div class="carousel-slide active">
+        <img
+          src="/images/hero1.webp"
+          alt="Muestra de expediente técnico — vista 1"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="/images/hero2.webp"
+          alt="Muestra de expediente técnico — vista 2"
+        />
+      </div>
+      <button class="carousel-btn prev" id="prevBtn">←</button>
+      <button class="carousel-btn next" id="nextBtn">→</button>
+      <div class="carousel-dots">
+        <button class="carousel-dot active" data-index="0"></button>
+        <button class="carousel-dot" data-index="1"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    padding: 96px 0 80px;
+  }
+  .hero {
+    display: grid;
+    gap: 48px;
+  }
+  @media (min-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+    section {
+      padding: 120px 0 80px;
+    }
+  }
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 3rem;
+    }
+  }
+  .hero-lead {
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+    margin-bottom: 32px;
+    max-width: 480px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Carousel */
+  .carousel {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--color-border);
+  }
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+  }
+  .carousel-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    font-size: 1.125rem;
+    color: var(--color-text);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .carousel-btn:hover {
+    background: #fff;
+  }
+  .carousel-btn.prev {
+    left: 12px;
+  }
+  .carousel-btn.next {
+    right: 12px;
+  }
+  .carousel-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    translate: -50% 0;
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+  }
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .carousel-dot.active {
+    background: #fff;
+  }
+</style>
+
+<script>
+  (function () {
+    const slides = document.querySelectorAll(".carousel-slide");
+    const dots = document.querySelectorAll(".carousel-dot");
+    const prev = document.getElementById("prevBtn");
+    const next = document.getElementById("nextBtn");
+    let current = 0;
+    let interval;
+
+    function goTo(index) {
+      slides[current].classList.remove("active");
+      dots[current].classList.remove("active");
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add("active");
+      dots[current].classList.add("active");
+    }
+
+    function nextSlide() {
+      goTo(current + 1);
+    }
+    function prevSlide() {
+      goTo(current - 1);
+    }
+
+    function startInterval() {
+      interval = setInterval(nextSlide, 4000);
+    }
+    function resetInterval() {
+      clearInterval(interval);
+      startInterval();
+    }
+
+    next.addEventListener("click", function () {
+      nextSlide();
+      resetInterval();
+    });
+    prev.addEventListener("click", function () {
+      prevSlide();
+      resetInterval();
+    });
+
+    dots.forEach(function (dot) {
+      dot.addEventListener("click", function () {
+        goTo(parseInt(this.dataset.index));
+        resetInterval();
+      });
+    });
+
+    startInterval();
+  })();
+</script>

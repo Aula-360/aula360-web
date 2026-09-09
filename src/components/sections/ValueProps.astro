@@ -1,0 +1,95 @@
+---
+const props = [
+  {
+    image: "/images/elaborados.webp",
+    alt: "Documentos completos y listos para usar",
+    title: "Completos y listos para usar",
+    description:
+      "Cada expediente incluye memoria descriptiva, especificaciones técnicas, planos, metrados, presupuesto, cronograma y fórmula polinómica. Todo lo que necesitas en un solo archivo.",
+  },
+  {
+    image: "/images/descarga.webp",
+    alt: "Entrega inmediata del expediente",
+    title: "Entrega inmediata",
+    description:
+      "Recibe tu expediente al instante después del pago. Yape, Plin o transferencia — tú eliges. Sin formularios ni demoras.",
+  },
+  {
+    image: "/images/cumplimento.webp",
+    alt: "Cumplimiento de normativa técnica",
+    title: "Cumplimiento normativo",
+    description:
+      "Elaborados considerando el RNE, Manual de Carreteras DG-2018, Código Nacional de Electricidad y directivas de Invierte.pe.",
+  },
+];
+---
+
+<section class="section-alt">
+  <div class="container">
+    <p class="section-label">Por qué Aula 360</p>
+    <h2 class="section-title">Documentos que puedes usar hoy</h2>
+    <p class="section-sub" style="margin-bottom: 40px">
+      Expedientes completos, normados y listos para descargar. Sin esperas ni
+      trámites.
+    </p>
+    <div class="props-grid">
+      {
+        props.map((prop) => (
+          <article class="prop-card">
+            <div class="prop-img">
+              <img src={prop.image} alt={prop.alt} />
+            </div>
+            <div>
+              <h3>{prop.title}</h3>
+              <p>{prop.description}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    padding: 0 0 80px;
+  }
+  .props-grid {
+    display: grid;
+    gap: 32px;
+  }
+  @media (min-width: 640px) {
+    .props-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .prop-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 0;
+    overflow: hidden;
+  }
+  .prop-card > div {
+    padding: 24px;
+  }
+  .prop-img {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    background: var(--color-bg-subtle);
+  }
+  .prop-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .prop-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .prop-card p {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+  }
+</style>

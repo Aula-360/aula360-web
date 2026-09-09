@@ -1,0 +1,141 @@
+---
+import { siteConfig, waLink, waMessages } from "../../data/site";
+---
+
+<aside class="sidebar">
+  <div class="sidebar-card sidebar-sticky">
+    <h3>Resumen de la clase magistral</h3>
+    <ul>
+      <li>
+        <span>Modalidad</span>
+        <span>Virtual en vivo</span>
+      </li>
+      <li>
+        <span>Duración</span>
+        <span>1 sesión</span>
+      </li>
+      <li>
+        <span>Horario</span>
+        <span>7:00 – 8:30 pm</span>
+      </li>
+      <li>
+        <span>Fecha</span>
+        <span>10 oct</span>
+      </li>
+      <li>
+        <span>Nivel</span>
+        <span>Intermedio – Avanzado</span>
+      </li>
+      <li>
+        <span>Certificado</span>
+        <span>Digital</span>
+      </li>
+    </ul>
+    <div style="margin-top: 20px">
+      <a
+        href={waLink(waMessages.masterclassInscripcion)}
+        class="btn btn-wa btn-block"
+        style="margin-bottom: 10px">Inscribirme ahora</a
+      >
+      <a
+        href={waLink(waMessages.masterclassConsulta)}
+        class="btn btn-outline btn-block">Tengo una consulta</a
+      >
+    </div>
+  </div>
+
+  <div class="sidebar-card">
+    <h3>Informes e inscripciones</h3>
+    <div class="contact-item">
+      <div class="contact-icon">📱</div>
+      <div>
+        <strong>WhatsApp</strong><br />
+        <a href={waLink(waMessages.masterclass)}>+51 982 599 421</a>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <strong>Correo</strong><br />
+        <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">🌐</div>
+      <div>
+        <strong>Web</strong><br />
+        <a href={`https://${siteConfig.domain}`}>{siteConfig.domain}</a>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .sidebar-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    background: var(--color-bg);
+  }
+  .sidebar-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .sidebar-card ul {
+    list-style: none;
+  }
+  .sidebar-card li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-bg-subtle);
+    font-size: 0.9375rem;
+  }
+  .sidebar-card li:last-child {
+    border-bottom: none;
+  }
+  .sidebar-card li span:first-child {
+    color: var(--color-text-muted);
+  }
+  .sidebar-card li span:last-child {
+    font-weight: 600;
+    text-align: right;
+  }
+  .contact-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    font-size: 0.9375rem;
+  }
+  .contact-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: var(--color-primary-bg);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+  }
+  .contact-item a {
+    color: var(--color-primary);
+  }
+  .contact-item a:hover {
+    text-decoration: underline;
+  }
+  @media (min-width: 992px) {
+    .sidebar-sticky {
+      position: sticky;
+      top: 96px;
+    }
+  }
+</style>
