@@ -32,7 +32,9 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
+        env:
+          npm_config_minimum_release_age: "0"
 
       - name: Build
         run: pnpm build
