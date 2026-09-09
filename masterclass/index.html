@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Taller en Vivo — Diagnóstico y Rehabilitación Estructural Hospitalaria |
+      Clase Magistral — Diagnóstico y Rehabilitación Estructural Hospitalaria |
       Aula 360
     </title>
     <meta
       name="description"
-      content="Taller en vivo de 3 sesiones con Álvaro Hurtado. Aprende a diagnosticar, reforzar y adecuar hospitales y clínicas en operación. Inscripción S/ 49."
+      content="Clase Magistral con Álvaro Hurtado. Aprende a diagnosticar, reforzar y adecuar hospitales y clínicas en operación. Inscripción S/ 49."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -134,20 +134,36 @@
 
       /* Course Hero */
       .course-hero {
-        padding: 64px 0 48px;
-        background: #f8fafc;
+        position: relative;
+        min-height: calc(100vh - 72px);
+        height: calc(100vh - 72px);
+        display: flex;
+        align-items: center;
+        background-image: url("../imagenes_masterclass/Move_column_right_remove_noise_202609071200.webp");
+        background-size: cover;
+        background-position: center;
         border-bottom: 1px solid #e5e7eb;
+      }
+      .course-hero > .container {
+        position: relative;
+        z-index: 1;
+      }
+      .course-hero-text {
+        max-width: 66.67%;
+        background: rgba(10, 37, 64, 0.35);
+        border-radius: 12px;
+        padding: 28px 32px;
       }
       .breadcrumbs {
         font-size: 0.8125rem;
-        color: #6b7280;
+        color: rgba(255, 255, 255, 0.65);
         margin-bottom: 20px;
       }
       .breadcrumbs a:hover {
-        color: #2b84cb;
+        color: #fff;
       }
       .breadcrumbs span {
-        color: #111827;
+        color: rgba(255, 255, 255, 0.85);
         font-weight: 500;
       }
       .course-label {
@@ -156,11 +172,13 @@
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        color: #2b84cb;
-        background: #eef5fa;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(4px);
         padding: 6px 12px;
         border-radius: 6px;
         margin-bottom: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
       .course-hero h1 {
         font-size: 2rem;
@@ -168,6 +186,7 @@
         line-height: 1.2;
         letter-spacing: -0.02em;
         margin-bottom: 20px;
+        color: #fff;
       }
       @media (min-width: 768px) {
         .course-hero h1 {
@@ -175,9 +194,8 @@
         }
       }
       .course-hero-lead {
-        color: #6b7280;
+        color: rgba(255, 255, 255, 0.8);
         font-size: 1.125rem;
-        max-width: 640px;
         margin-bottom: 28px;
       }
       .course-meta {
@@ -196,23 +214,24 @@
         }
       }
       .meta-item {
-        background: #fff;
-        border: 1px solid #e5e7eb;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 10px;
         padding: 14px 16px;
+        backdrop-filter: blur(4px);
       }
       .meta-item dt {
         font-size: 0.6875rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.06em;
-        color: #9ca3af;
+        color: rgba(255, 255, 255, 0.6);
         margin-bottom: 4px;
       }
       .meta-item dd {
         font-size: 0.9375rem;
         font-weight: 600;
-        color: #111827;
+        color: #fff;
       }
 
       /* Course Layout */
@@ -606,7 +625,7 @@
           <img src="../images/logo.webp" alt="Aula 360" height="56" />
         </a>
         <a
-          href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20taller%20de%20Rehabilitaci%C3%B3n%20Estructural%20Hospitalaria"
+          href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20clase%20magistral%20de%20Rehabilitaci%C3%B3n%20Estructural%20Hospitalaria"
           class="nav-wa"
           >Escríbenos por WhatsApp</a
         >
@@ -616,47 +635,56 @@
     <!-- Course Hero -->
     <header class="course-hero">
       <div class="container">
-        <nav class="breadcrumbs">
-          <a href="../index.html">Inicio</a> /
-          <span>Taller en vivo</span>
-        </nav>
-        <span class="course-label">Taller en vivo de entrada</span>
-        <h1>
-          Curso Especializado en Diagnóstico, Reparación y Rehabilitación
-          Estructural en Infraestructura Hospitalaria
-        </h1>
-        <p class="course-hero-lead">
-          Actualiza tus herramientas como ingeniero estructural para diagnosticar,
-          reforzar y adecuar hospitales y clínicas en pleno funcionamiento. Tres
-          sesiones en vivo con Álvaro Hurtado para tomar decisiones con mayor
-          precisión y seguridad.
-        </p>
-        <dl class="course-meta">
-          <div class="meta-item">
-            <dt>Fechas</dt>
-            <dd>5, 6 y 7 oct</dd>
+        <div class="course-hero-text">
+          <nav class="breadcrumbs">
+            <a href="../index.html">Inicio</a> /
+            <span>Clase Magistral</span>
+          </nav>
+          <span class="course-label">Clase Magistral de entrada</span>
+          <h1>
+            Clase Magistral en Diagnóstico, Reparación y Rehabilitación
+            Estructural en Infraestructura Hospitalaria
+          </h1>
+          <p class="course-hero-lead">
+            Actualiza tus herramientas como ingeniero estructural para
+            diagnosticar, reforzar y adecuar hospitales y clínicas en pleno
+            funcionamiento. Una sesión en vivo con Álvaro Hurtado para tomar
+            decisiones con mayor precisión y seguridad.
+          </p>
+          <dl class="course-meta">
+            <div class="meta-item">
+              <dt>Fecha</dt>
+              <dd>10 oct</dd>
+            </div>
+            <div class="meta-item">
+              <dt>Horario</dt>
+              <dd>7:00 – 8:30 pm</dd>
+            </div>
+            <div class="meta-item">
+              <dt>Duración</dt>
+              <dd>1 sesión</dd>
+            </div>
+            <div class="meta-item">
+              <dt>Horas</dt>
+              <dd>1.5 h en vivo</dd>
+            </div>
+            <div class="meta-item">
+              <dt>Modalidad</dt>
+              <dd>Virtual en vivo</dd>
+            </div>
+            <div class="meta-item">
+              <dt>Nivel</dt>
+              <dd>Intermedio – Avanzado</dd>
+            </div>
+          </dl>
+          <div style="margin-top: 8px">
+            <a
+              href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20inscribirme%20a%20la%20clase%20magistral%20de%20Rehabilitaci%C3%B3n%20Estructural%20Hospitalaria"
+              class="btn btn-wa"
+              >Inscribirme ahora</a
+            >
           </div>
-          <div class="meta-item">
-            <dt>Horario</dt>
-            <dd>7:00 – 8:30 pm</dd>
-          </div>
-          <div class="meta-item">
-            <dt>Duración</dt>
-            <dd>3 sesiones</dd>
-          </div>
-          <div class="meta-item">
-            <dt>Horas</dt>
-            <dd>4.5 h en vivo</dd>
-          </div>
-          <div class="meta-item">
-            <dt>Modalidad</dt>
-            <dd>Virtual en vivo</dd>
-          </div>
-          <div class="meta-item">
-            <dt>Nivel</dt>
-            <dd>Intermedio – Avanzado</dd>
-          </div>
-        </dl>
+        </div>
       </div>
     </header>
 
@@ -668,20 +696,14 @@
           <p>
             En infraestructura hospitalaria, un error de diagnóstico puede
             descalibrar un resonador de USD 1.5 millones o paralizar un
-            quirófano. Este curso especializado actualiza a ingenieros con
-            experiencia en las herramientas necesarias para intervenir clínicas y
-            hospitales sin interrumpir cirugías ni arriesgar la vida de pacientes
-            y personal.
+            quirófano. Esta clase magistral actualiza a ingenieros con
+            experiencia en las herramientas necesarias para intervenir clínicas
+            y hospitales sin interrumpir cirugías ni arriesgar la vida de
+            pacientes y personal.
           </p>
-          <figure class="content-image">
-            <img
-              src="../images/elaborados.webp"
-              alt="Diagnóstico estructural en infraestructura hospitalaria"
-            />
-          </figure>
           <p>
-            Durante tres sesiones en vivo abordaremos cuatro pilares de alto
-            valor comercial: diagnóstico forense, adecuación para equipos médicos
+            Durante la sesión en vivo abordaremos cuatro pilares de alto valor
+            comercial: diagnóstico forense, adecuación para equipos médicos
             pesados, técnicas modernas de refuerzo y expedientes técnicos para
             licitaciones. Al finalizar tendrás una ruta clara para ofrecer
             servicios que van desde informes periciales hasta obras de
@@ -693,49 +715,45 @@
           <h2>Objetivos</h2>
           <ul>
             <li>
-              Diagnosticar daños invisibles en concreto mediante ensayos no destructivos.
+              Diagnosticar daños invisibles en concreto mediante ensayos no
+              destructivos.
             </li>
             <li>
-              Detectar carbonatación y cloruros antes de que comprometan la armadura interna.
+              Detectar carbonatación y cloruros antes de que comprometan la
+              armadura interna.
             </li>
             <li>
-              Recalcular y rigidizar losas para resonadores, tomógrafos y angiógrafos.
+              Recalcular y rigidizar losas para resonadores, tomógrafos y
+              angiógrafos.
             </li>
             <li>
-              Comparar métodos tradicionales de encamisetado con refuerzos de fibra de carbono (CFRP).
+              Comparar métodos tradicionales de encamisetado con refuerzos de
+              fibra de carbono (CFRP).
             </li>
             <li>
-              Estructurar informes periciales y expedientes técnicos para licitaciones públicas.
+              Estructurar informes periciales y expedientes técnicos para
+              licitaciones públicas.
             </li>
           </ul>
-          <div class="image-grid">
-            <figure class="content-image">
-              <img
-                src="../images/hero1.webp"
-                alt="Evaluación estructural en clínica en operación"
-              />
-            </figure>
-            <figure class="content-image">
-              <img
-                src="../images/hero2.webp"
-                alt="Adecuación estructural para equipos médicos"
-              />
-            </figure>
-          </div>
         </section>
-
         <section>
           <h2>Dirigido a</h2>
           <ul>
-            <li>Ingenieros civiles y estructurales con experiencia en diseño o supervisión.</li>
             <li>
-              Consultores que desean incursionar en peritajes y rehabilitación de edificaciones.
+              Ingenieros civiles y estructurales con experiencia en diseño o
+              supervisión.
             </li>
             <li>
-              Profesionales que trabajan con clínicas privadas, hospitales públicos o proveedores de equipos médicos.
+              Consultores que desean incursionar en peritajes y rehabilitación
+              de edificaciones.
             </li>
             <li>
-              Ingenieros que postulan a licitaciones con el Estado y necesitan puntaje académico certificado.
+              Profesionales que trabajan con clínicas privadas, hospitales
+              públicos o proveedores de equipos médicos.
+            </li>
+            <li>
+              Ingenieros que postulan a licitaciones con el Estado y necesitan
+              puntaje académico certificado.
             </li>
           </ul>
         </section>
@@ -744,27 +762,37 @@
           <h2>Contenido del programa</h2>
           <ol>
             <li>
-              <strong>Pilar 1 — Evaluación forense y diagnóstico estructural</strong>
+              <strong
+                >Pilar 1 — Evaluación forense y diagnóstico estructural</strong
+              >
               <br />
               Ensayos no destructivos (esclerometría y pacometría), detección de
               carbonatación y cloruros, elaboración de informes periciales de
               habitabilidad.
             </li>
             <li>
-              <strong>Pilar 2 — Modificaciones para equipos médicos pesados</strong>
+              <strong
+                >Pilar 2 — Modificaciones para equipos médicos pesados</strong
+              >
               <br />
               Refuerzo de losas para resonadores magnéticos, tomógrafos y
               angiógrafos. Control de microvibraciones, deflexión milimétrica y
               perforaciones seguras sin cortar acero vital.
             </li>
             <li>
-              <strong>Pilar 3 — Técnicas modernas de refuerzo y rehabilitación</strong>
+              <strong
+                >Pilar 3 — Técnicas modernas de refuerzo y
+                rehabilitación</strong
+              >
               <br />
               Encamisetado tradicional de concreto armado, refuerzo con fibra de
               carbono (CFRP) e inyección epóxica para sellado de grietas.
             </li>
             <li>
-              <strong>Pilar 4 — Expedientes técnicos, peritajes y licitaciones</strong>
+              <strong
+                >Pilar 4 — Expedientes técnicos, peritajes y
+                licitaciones</strong
+              >
               <br />
               Normativa hospitalaria (NTS), sismorresistencia E.030, expedientes
               técnicos llave en mano e informes periciales para seguros e
@@ -778,7 +806,7 @@
           <div class="instructor-card">
             <div class="instructor-photo">
               <img
-                src="../images/hero1.webp"
+                src="../imagenes_masterclass/expositor.webp"
                 alt="Álvaro Hurtado — Especialista en rehabilitación estructural"
               />
             </div>
@@ -799,38 +827,29 @@
         <section>
           <h2>Metodología</h2>
           <ul>
-            <li>Tres sesiones en vivo de 1.5 horas por Zoom.</li>
+            <li>Una sesión en vivo de 1.5 horas por Zoom.</li>
             <li>Teoría concisa pregrabada complementada con Q&A dinámico.</li>
-            <li>Casos de estudio reales de clínicas e infraestructura hospitalaria.</li>
-            <li>Material descargable: plantillas, checklists y ejemplos de informes.</li>
-            <li>Grabaciones disponibles por 30 días para repasar.</li>
+            <li>
+              Casos de estudio reales de clínicas e infraestructura
+              hospitalaria.
+            </li>
+            <li>
+              Material descargable: plantillas, checklists y ejemplos de
+              informes.
+            </li>
+            <li>Grabación disponible por 30 días para repasar.</li>
           </ul>
-          <figure class="content-image">
-            <img
-              src="../images/cumplimento.webp"
-              alt="Sesión virtual del taller especializado en rehabilitación hospitalaria"
-            />
-          </figure>
         </section>
-
         <section>
           <h2>Calendario</h2>
           <dl class="schedule-grid">
             <div class="schedule-item">
-              <dt>Sesión 1</dt>
-              <dd>05 oct, 7:00 – 8:30 pm</dd>
-            </div>
-            <div class="schedule-item">
-              <dt>Sesión 2</dt>
-              <dd>06 oct, 7:00 – 8:30 pm</dd>
-            </div>
-            <div class="schedule-item">
-              <dt>Sesión 3</dt>
-              <dd>07 oct, 7:00 – 8:30 pm</dd>
+              <dt>Sesión</dt>
+              <dd>10 oct, 7:00 – 8:30 pm</dd>
             </div>
             <div class="schedule-item">
               <dt>Total</dt>
-              <dd>4.5 horas en vivo</dd>
+              <dd>1.5 horas en vivo</dd>
             </div>
           </dl>
         </section>
@@ -839,9 +858,12 @@
           <h2>Inversión</h2>
           <div class="pricing-box">
             <div class="price">S/ 49.00</div>
-            <div class="price-note">Taller de entrada. Incluye acceso a las 3 sesiones en vivo, material descargable y certificado digital.</div>
+            <div class="price-note">
+              Clase Magistral de entrada. Incluye acceso a la sesión en vivo,
+              material descargable y certificado digital.
+            </div>
             <a
-              href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20inscribirme%20al%20taller%20de%20Rehabilitaci%C3%B3n%20Estructural%20Hospitalaria"
+              href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20inscribirme%20a%20la%20clase%20magistral%20de%20Rehabilitaci%C3%B3n%20Estructural%20Hospitalaria"
               class="btn btn-wa btn-block"
               >Inscribirme por WhatsApp</a
             >
@@ -855,7 +877,7 @@
         <section>
           <h2>Certificación</h2>
           <p>
-            Al completar el taller recibirás un certificado digital de
+            Al completar la clase magistral recibirás un certificado digital de
             participación. Además, tendrás acceso preferencial a la
             Especialización completa en Rehabilitación Estructural de
             Infraestructura Hospitalaria, con acreditación de 90 a 120 horas
@@ -864,12 +886,12 @@
         </section>
 
         <section>
-          <h2>De taller a especialización high ticket</h2>
+          <h2>De clase magistral a especialización high ticket</h2>
           <p>
-            Este taller de S/ 49 es la puerta de entrada a una especialización de
-            alto valor comercial. Los cuatro pilares del programa capacitan al
-            ingeniero para ofrecer servicios que el mercado hospitalario paga
-            entre S/ 3,000 y S/ 50,000 por proyecto:
+            Esta clase magistral de S/ 49 es la puerta de entrada a una
+            especialización de alto valor comercial. Los cuatro pilares del
+            programa capacitan al ingeniero para ofrecer servicios que el
+            mercado hospitalario paga entre S/ 3,000 y S/ 50,000 por proyecto:
           </p>
           <ul>
             <li>
@@ -890,16 +912,16 @@
             </li>
           </ul>
           <p>
-            Los asistentes al taller recibirán una tarifa preferencial de
-            lanzamiento para la especialización completa, fraccionada en 2 o 3
-            cuotas.
+            Los asistentes a la clase magistral recibirán una tarifa
+            preferencial de lanzamiento para la especialización completa,
+            fraccionada en 2 o 3 cuotas.
           </p>
         </section>
       </main>
 
       <aside class="sidebar">
         <div class="sidebar-card sidebar-sticky">
-          <h3>Resumen del taller</h3>
+          <h3>Resumen de la clase magistral</h3>
           <ul>
             <li>
               <span>Modalidad</span>
@@ -907,15 +929,15 @@
             </li>
             <li>
               <span>Duración</span>
-              <span>3 sesiones</span>
+              <span>1 sesión</span>
             </li>
             <li>
               <span>Horario</span>
               <span>7:00 – 8:30 pm</span>
             </li>
             <li>
-              <span>Fechas</span>
-              <span>5, 6 y 7 oct</span>
+              <span>Fecha</span>
+              <span>10 oct</span>
             </li>
             <li>
               <span>Nivel</span>
@@ -928,13 +950,13 @@
           </ul>
           <div style="margin-top: 20px">
             <a
-              href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20inscribirme%20al%20taller%20de%20Rehabilitaci%C3%B3n%20Estructural%20Hospitalaria"
+              href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20inscribirme%20a%20la%20clase%20magistral%20de%20Rehabilitaci%C3%B3n%20Estructural%20Hospitalaria"
               class="btn btn-wa btn-block"
               style="margin-bottom: 10px"
               >Inscribirme ahora</a
             >
             <a
-              href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20tengo%20una%20consulta%20sobre%20el%20taller%20de%20Rehabilitaci%C3%B3n%20Estructural%20Hospitalaria"
+              href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20tengo%20una%20consulta%20sobre%20la%20clase%20magistral%20de%20Rehabilitaci%C3%B3n%20Estructural%20Hospitalaria"
               class="btn btn-outline btn-block"
               >Tengo una consulta</a
             >
@@ -976,8 +998,8 @@
           <div class="include-item">
             <div class="include-check">✓</div>
             <div>
-              <h4>3 sesiones en vivo</h4>
-              <p>1.5 horas cada una con teoría concisa y Q&A dinámico.</p>
+              <h4>1 sesión en vivo</h4>
+              <p>1.5 horas con teoría concisa y Q&A dinámico.</p>
             </div>
           </div>
           <div class="include-item">
@@ -990,15 +1012,15 @@
           <div class="include-item">
             <div class="include-check">✓</div>
             <div>
-              <h4>Grabaciones por 30 días</h4>
-              <p>Revisa las sesiones las veces que necesites.</p>
+              <h4>Grabación por 30 días</h4>
+              <p>Revisa la sesión las veces que necesites.</p>
             </div>
           </div>
           <div class="include-item">
             <div class="include-check">✓</div>
             <div>
               <h4>Certificado digital</h4>
-              <p>Al completar el taller de entrada.</p>
+              <p>Al completar la clase magistral de entrada.</p>
             </div>
           </div>
         </div>
@@ -1010,12 +1032,12 @@
       <div class="container">
         <h2>¿Listo para especializarte en rehabilitación hospitalaria?</h2>
         <p>
-          Separa tu cupo en el taller de entrada por S/ 49. Las sesiones son en
-          vivo, con casos reales y acceso preferencial a la especialización
-          completa acreditada.
+          Separa tu cupo en la clase magistral de entrada por S/ 49. La sesión
+          es en vivo, con casos reales y acceso preferencial a la
+          especialización completa acreditada.
         </p>
         <a
-          href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20inscribirme%20al%20taller%20de%20Rehabilitaci%C3%B3n%20Estructural%20Hospitalaria"
+          href="https://wa.me/51982599421?text=Hola%20Aula%20360%2C%20quiero%20inscribirme%20a%20la%20clase%20magistral%20de%20Rehabilitaci%C3%B3n%20Estructural%20Hospitalaria"
           class="btn btn-wa"
           >Inscribirme por WhatsApp</a
         >
@@ -1039,7 +1061,7 @@
           <h4>Productos</h4>
           <ul>
             <li><a href="../index.html#catalogo">Expedientes</a></li>
-            <li><a href="#">Talleres en vivo</a></li>
+            <li><a href="#">Clases magistrales</a></li>
             <li><a href="#">Asesorías</a></li>
           </ul>
         </div>
@@ -1049,7 +1071,13 @@
             <li><a href="../privacidad.html">Privacidad</a></li>
             <li><a href="../terminos.html">Términos</a></li>
             <li><a href="../retirar-contenido.html">Retirar Contenido</a></li>
-            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc6-UUeUOH3_AMlY1svMd2LR1To4y-ToUEbB1d33BlJ3AC2iQ/viewform?usp=sharing&ouid=113939090749411451993" target="_blank">Libro de Reclamaciones</a></li>
+            <li>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSc6-UUeUOH3_AMlY1svMd2LR1To4y-ToUEbB1d33BlJ3AC2iQ/viewform?usp=sharing&ouid=113939090749411451993"
+                target="_blank"
+                >Libro de Reclamaciones</a
+              >
+            </li>
           </ul>
         </div>
         <div>
