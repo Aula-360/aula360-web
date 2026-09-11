@@ -5,9 +5,16 @@ import { masterclassMeta, waLink, waMessages } from "../../data/site";
 <header class="course-hero">
   <div class="container">
     <div class="course-hero-text">
-      <nav class="breadcrumbs">
-        <a href="/">Inicio</a> /
-        <span>Clase Magistral</span>
+        <nav class="breadcrumbs">
+            <img
+                src="/images/logo.webp"
+                alt="Aula 360"
+                width="30"
+                height="30"
+                class="hero-logo"
+            />
+           <span> <- </span>
+           <a href="/">Volver</a>
       </nav>
       <span class="course-label">Clase Magistral de entrada</span>
       <h1>
@@ -30,7 +37,7 @@ import { masterclassMeta, waLink, waMessages } from "../../data/site";
           ))
         }
       </dl>
-      <div style="margin-top: 8px">
+      <div class="hero-cta">
         <a href={waLink(waMessages.masterclassInscripcion)} class="btn btn-wa"
           >Inscribirme ahora</a
         >
@@ -65,6 +72,12 @@ import { masterclassMeta, waLink, waMessages } from "../../data/site";
     font-size: 0.8125rem;
     color: rgba(255, 255, 255, 0.65);
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .breadcrumbs img {
+    border-radius: var(--radius-sm);
   }
   .breadcrumbs a:hover {
     color: #fff;
@@ -104,6 +117,16 @@ import { masterclassMeta, waLink, waMessages } from "../../data/site";
     color: rgba(255, 255, 255, 0.8);
     font-size: 1.125rem;
     margin-bottom: 28px;
+  }
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .hero-logo {
+    border-radius: var(--radius-xl);
+    display: block;
   }
   .course-meta {
     display: grid;

@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CourseHero from "../components/sections/CourseHero.astro";
 import CourseContent from "../components/sections/CourseContent.astro";
@@ -14,7 +13,6 @@ import { masterclassIncludes, waMessages } from "../data/site";
   title="Clase Magistral — Diagnóstico y Rehabilitación Estructural Hospitalaria | Aula 360"
   description="Clase Magistral con Álvaro Hurtado. Aprende a diagnosticar, reforzar y adecuar hospitales y clínicas en operación. Inscripción S/ 49."
 >
-  <Header waMessage={waMessages.masterclass} />
   <CourseHero />
   <div class="container course-layout">
     <CourseContent />
