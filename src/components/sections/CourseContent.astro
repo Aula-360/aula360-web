@@ -77,43 +77,41 @@ import { waLink, waMessages } from "../../data/site";
     </ul>
   </section>
 
-  <section>
+  <section class="programa-section">
     <h2>Contenido del programa</h2>
-    <ol>
-      <li>
-        <strong>Pilar 1 — Evaluación forense y diagnóstico estructural</strong>
-        <br />
-        Ensayos no destructivos (esclerometría y pacometría), detección de
-        carbonatación y cloruros, elaboración de informes periciales de
-        habitabilidad.
-      </li>
-      <li>
-        <strong
-          >Pilar 2 — Modificaciones para equipos médicos pesados</strong
-        >
-        <br />
-        Refuerzo de losas para resonadores magnéticos, tomógrafos y angiógrafos.
-        Control de microvibraciones, deflexión milimétrica y perforaciones
-        seguras sin cortar acero vital.
-      </li>
-      <li>
-        <strong
-          >Pilar 3 — Técnicas modernas de refuerzo y rehabilitación</strong
-        >
-        <br />
-        Encamisetado tradicional de concreto armado, refuerzo con fibra de
-        carbono (CFRP) e inyección epóxica para sellado de grietas.
-      </li>
-      <li>
-        <strong
-          >Pilar 4 — Expedientes técnicos, peritajes y licitaciones</strong
-        >
-        <br />
-        Normativa hospitalaria (NTS), sismorresistencia E.030, expedientes
-        técnicos llave en mano e informes periciales para seguros e
-        indemnizaciones.
-      </li>
-    </ol>
+    <div class="toggle-list">
+      <details class="toggle-item" open>
+        <summary>Evaluación forense y diagnóstico estructural</summary>
+        <p>
+          Ensayos no destructivos (esclerometría y pacometría), detección de
+          carbonatación y cloruros, elaboración de informes periciales de
+          habitabilidad.
+        </p>
+      </details>
+      <details class="toggle-item">
+        <summary>Modificaciones para equipos médicos pesados</summary>
+        <p>
+          Refuerzo de losas para resonadores magnéticos, tomógrafos y angiógrafos.
+          Control de microvibraciones, deflexión milimétrica y perforaciones
+          seguras sin cortar acero vital.
+        </p>
+      </details>
+      <details class="toggle-item">
+        <summary>Técnicas modernas de refuerzo y rehabilitación</summary>
+        <p>
+          Encamisetado tradicional de concreto armado, refuerzo con fibra de
+          carbono (CFRP) e inyección epóxica para sellado de grietas.
+        </p>
+      </details>
+      <details class="toggle-item">
+        <summary>Expedientes técnicos, peritajes y licitaciones</summary>
+        <p>
+          Normativa hospitalaria (NTS), sismorresistencia E.030, expedientes
+          técnicos llave en mano e informes periciales para seguros e
+          indemnizaciones.
+        </p>
+      </details>
+    </div>
   </section>
 
   <section>
@@ -171,7 +169,7 @@ import { waLink, waMessages } from "../../data/site";
   <section>
     <h2>Inversión</h2>
     <div class="pricing-box">
-      <div class="price">S/ 49.00</div>
+      <div class="price">S/ 18.00</div>
       <div class="price-note">
         Clase Magistral de entrada. Incluye acceso a la sesión en vivo,
         material descargable y certificado digital.
@@ -198,7 +196,7 @@ import { waLink, waMessages } from "../../data/site";
     </p>
   </section>
 
-  <section>
+  <!--section>
     <h2>De clase magistral a especialización high ticket</h2>
     <p>
       Esta clase magistral de S/ 49 es la puerta de entrada a una
@@ -229,12 +227,73 @@ import { waLink, waMessages } from "../../data/site";
       lanzamiento para la especialización completa, fraccionada en 2 o 3
       cuotas.
     </p>
-  </section>
+  </section-->
 </main>
 
 <style>
   .course-content section {
     margin-bottom: 40px;
+  }
+
+  /* Programa toggle section */
+  .programa-section {
+    background: #ffc533;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+  }
+  .programa-section h2 {
+    color: #000;
+  }
+  .toggle-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .toggle-item {
+    background: #ffe29a;
+    border: 1px solid rgba(10, 37, 64, 0.1);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .toggle-item[open] {
+    background: #ffd97a;
+    border-color: rgba(10, 37, 64, 0.18);
+  }
+  .toggle-item summary {
+    padding: 14px 16px;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: #000;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    user-select: none;
+  }
+  .toggle-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .toggle-item summary::after {
+    content: "+";
+    font-size: 1.25rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+  .toggle-item[open] summary::after {
+    content: "\2212";
+  }
+  .programa-section .toggle-item p {
+    padding: 0 16px 14px;
+    color: #000;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    border-top: 1px solid rgba(10, 37, 64, 0.1);
+    padding-top: 12px;
   }
 
   /* Objetivos section */
