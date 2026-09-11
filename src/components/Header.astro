@@ -13,7 +13,10 @@ const { waMessage = waMessages.expedientes } = Astro.props;
     <a href="/" class="logo">
       <img src="/images/logo.webp" alt="Aula 360" height="56" />
     </a>
-    <a href={waLink(waMessage)} class="nav-wa">Escríbenos por WhatsApp</a>
+    <div class="nav-links">
+      <a href="/clase-magistral.html" class="nav-clases">Clases</a>
+      <a href={waLink(waMessage)} class="nav-wa">Escríbenos por WhatsApp</a>
+    </div>
   </div>
 </nav>
 
@@ -39,6 +42,24 @@ const { waMessage = waMessages.expedientes } = Astro.props;
   .logo img {
     display: block;
     border-radius: var(--radius-xl);
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .nav-clases {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text);
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-clases:hover {
+    background: var(--color-bg-subtle);
+    color: var(--color-primary);
   }
   .nav-wa {
     font-size: 0.875rem;
