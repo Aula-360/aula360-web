@@ -21,30 +21,38 @@ import { waLink, waMessages } from "../../data/site";
     </p>
   </section>
 
-  <section>
-    <h2>Objetivos</h2>
-    <ul class="check-list">
-      <li>
-        Diagnosticar daños invisibles en concreto mediante ensayos no
-        destructivos.
-      </li>
-      <li>
-        Detectar carbonatación y cloruros antes de que comprometan la armadura
-        interna.
-      </li>
-      <li>
-        Recalcular y rigidizar losas para resonadores, tomógrafos y
-        angiógrafos.
-      </li>
-      <li>
-        Comparar métodos tradicionales de encamisetado con refuerzos de fibra
-        de carbono (CFRP).
-      </li>
-      <li>
-        Estructurar informes periciales y expedientes técnicos para
-        licitaciones públicas.
-      </li>
-    </ul>
+  <section class="objetivos-section">
+    <div class="objetivos-image">
+      <img
+        src="/images/objetivos.webp"
+        alt="Objetivos de la clase magistral"
+      />
+    </div>
+    <div class="objetivos-text">
+      <h2>Objetivos</h2>
+      <ul class="check-list">
+        <li>
+          Diagnosticar daños invisibles en concreto mediante ensayos no
+          destructivos.
+        </li>
+        <li>
+          Detectar carbonatación y cloruros antes de que comprometan la armadura
+          interna.
+        </li>
+        <li>
+          Recalcular y rigidizar losas para resonadores, tomógrafos y
+          angiógrafos.
+        </li>
+        <li>
+          Comparar métodos tradicionales de encamisetado con refuerzos de fibra
+          de carbono (CFRP).
+        </li>
+        <li>
+          Estructurar informes periciales y expedientes técnicos para
+          licitaciones públicas.
+        </li>
+      </ul>
+    </div>
   </section>
 
   <section>
@@ -227,6 +235,40 @@ import { waLink, waMessages } from "../../data/site";
 <style>
   .course-content section {
     margin-bottom: 40px;
+  }
+
+  /* Objetivos section */
+  .objetivos-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background: #ffc533;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 24px;
+  }
+  @media (min-width: 640px) {
+    .objetivos-section {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  .objetivos-image {
+    flex: 1;
+    min-width: 0;
+  }
+  .objetivos-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    display: block;
+  }
+  .objetivos-text {
+    flex: 1;
+    min-width: 0;
+  }
+  .objetivos-section .check-list li {
+    color: #000;
   }
   .course-content h2 {
     font-size: 1.25rem;
