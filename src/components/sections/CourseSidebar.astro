@@ -1,5 +1,5 @@
 ---
-import { siteConfig, waLink, waMessages } from "../../data/site";
+import { waLink, waMessages } from "../../data/site";
 ---
 
 <aside class="sidebar">
@@ -43,31 +43,6 @@ import { siteConfig, waLink, waMessages } from "../../data/site";
       >
     </div>
   </div>
-
-  <div class="sidebar-card">
-    <h3>Informes e inscripciones</h3>
-    <div class="contact-item">
-      <div class="contact-icon">📱</div>
-      <div>
-        <strong>WhatsApp</strong><br />
-        <a href={waLink(waMessages.masterclass)}>+51 982 599 421</a>
-      </div>
-    </div>
-    <div class="contact-item">
-      <div class="contact-icon">✉️</div>
-      <div>
-        <strong>Correo</strong><br />
-        <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
-      </div>
-    </div>
-    <div class="contact-item">
-      <div class="contact-icon">🌐</div>
-      <div>
-        <strong>Web</strong><br />
-        <a href={`https://${siteConfig.domain}`}>{siteConfig.domain}</a>
-      </div>
-    </div>
-  </div>
 </aside>
 
 <style>
@@ -75,6 +50,13 @@ import { siteConfig, waLink, waMessages } from "../../data/site";
     display: flex;
     flex-direction: column;
     gap: 24px;
+  }
+  @media (min-width: 992px) {
+    .sidebar {
+      position: sticky;
+      top: 96px;
+      align-self: start;
+    }
   }
   .sidebar-card {
     border: 1px solid var(--color-border);
@@ -106,36 +88,5 @@ import { siteConfig, waLink, waMessages } from "../../data/site";
   .sidebar-card li span:last-child {
     font-weight: 600;
     text-align: right;
-  }
-  .contact-item {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    margin-bottom: 14px;
-    font-size: 0.9375rem;
-  }
-  .contact-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: var(--radius-md);
-    background: var(--color-primary-bg);
-    color: var(--color-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.875rem;
-    flex-shrink: 0;
-  }
-  .contact-item a {
-    color: var(--color-primary);
-  }
-  .contact-item a:hover {
-    text-decoration: underline;
-  }
-  @media (min-width: 992px) {
-    .sidebar-sticky {
-      position: sticky;
-      top: 96px;
-    }
   }
 </style>
